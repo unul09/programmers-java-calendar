@@ -6,6 +6,24 @@ public class Calendar {
 	private static final int[] LEAP_MAX_DAYS = {31,29,31,30,31,30,31,31,30,31,30,31};
 	private static final String[] WEEKDAYS = {"SU", "MO", "TU", "WE", "TH", "FR", "SA"};
 	
+	
+	public static int allday(int year, int month) {
+		int allday = year*365 + ((year/4-year/100)+(year/400)); //전년도까지의 날짜합을 구한다. 윤년 고려함
+		for(int i=0; i<month-1; i++) {
+			if(isLeapYear(year)) 
+				allday += LEAP_MAX_DAYS[i]; //해당년이 윤년이라면 달을 윤년날짜 고려해서 더함
+				
+			
+			else
+				allday += MAX_DAYS[i]; //해당년이 윤년이 아니라면 달을 평소대로 고려해서 더함
+		}
+		
+		
+		return allday%7; //공백날짜 반환
+		
+		
+		
+	}
 	public static boolean isLeapYear(int year) {
 		if(year % 4 == 0 && year % 100 != 0)
 			return true;
@@ -35,14 +53,14 @@ public class Calendar {
 	
 	}
 
-	public static void printCalendar(int year, int month, String weekday) {
+	public static void printCalendar(int year, int month) {
 		System.out.printf("    <<%4d년%3d월>>", year, month);
 		System.out.println();
 		System.out.println("일  월  화  수  목  금  토");
 		System.out.println("---------------------");
 		
 		int maxDay = getMaxDaysOfMonth(year, month);
-		int blank = blankCount(weekday);
+		int blank = allday(year, month);
 		
 		for(int i = 0; i< blank; i++) 
 			System.out.print("   ");
