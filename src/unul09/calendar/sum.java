@@ -7,15 +7,29 @@ public class sum {
 		
 		Scanner s = new Scanner(System.in);
 		
-		System.out.print("달을 입력하세요. >");
-		int month = s.nextInt();
+		System.out.print("반복횟수를 입력하세요. >");
+		int repeat = s.nextInt();
+		int [] months = new int[repeat];
 		
-		if(month<1 || month>12)
-			System.out.println("제대로 입력해!");
+		System.out.print("월을 입력하세요. >");
+		for(int i=0; i<repeat; i++) {
+			months[i] = s.nextInt();
+			if(months[i]<1 || months[i]>12) {
+				System.out.println("제대로 입력해!");
+				i--;
+				}			
+		}
+			
 		
-		else
-			System.out.printf("%d월은 %d일까지 있습니다.", month, days[month-1]);
 		
+		
+			for(int i=0; i<months.length; i++) {
+				System.out.printf("%d월은 %d일까지 있습니다.", months[i], days[months[i]]);
+				System.out.println();
+			}
+			
+			
+			s.close();
 		
 		
 		
