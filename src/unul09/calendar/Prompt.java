@@ -10,6 +10,7 @@ public class Prompt {
 		
 		int month = 1;
 		int year = 1;
+		String weekday = "";
 		
 		while(true) {
 			System.out.println("년도을 입력하세요 ");
@@ -18,13 +19,18 @@ public class Prompt {
 			System.out.println("달을 입력하세요 ");
 			System.out.print("MONTH> ");
 			month = s.nextInt();
+			System.out.println("첫번째 요일을 입력하세요. (SU, MO, TU, WE, TH, FR, SA) ");
+			System.out.print("WEEKDAY> ");
+			weekday = s.next();
 			
 			if(month == -1)
 				break;
 			else if (month >12)
 				continue;
 			
-			cal.printCalendar(year, month);
+			
+			
+			cal.printCalendar(year, month, weekday);
 			}
 		
 		
